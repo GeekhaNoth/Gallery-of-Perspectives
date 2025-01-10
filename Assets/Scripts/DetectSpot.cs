@@ -16,7 +16,7 @@ public class DetectSpot : MonoBehaviour
     {
         if (Input.GetKeyDown("r"))
         {
-            if (onSpot)
+            if (onSpot) //vérifie si le joueur est au bon endroit pour valider le niveau
             {
                 completioncheck.lastlevel = SceneManager.GetActiveScene().buildIndex;
                 SaveCurrentLevel();
@@ -36,12 +36,12 @@ public class DetectSpot : MonoBehaviour
         onSpot = false;
     }
     
-    public static void SaveCurrentLevel()
+    public static void SaveCurrentLevel() //sauvegarde quel est le niveau actuel pour le consider comme valider lorsque retour au hub
     {
         PlayerPrefs.SetInt("Current", completioncheck.lastlevel);
     }
 
-    public static void LoadCurrentLevel()
+    public static void LoadCurrentLevel() //permet lorsque appelé de recuperer le dernier niveau joué
     {
         completioncheck.lastlevel = PlayerPrefs.GetInt("Current");
     }
