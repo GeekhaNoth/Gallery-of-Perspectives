@@ -1,10 +1,13 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class completioncheck : MonoBehaviour
 {
     public static string[] allLevel = {"1","0","0","0","0","0","0","0","0","0","0"}; //y a 10 zéros, chaque index correspond à un niveau
     public static int lastlevel = 0;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,15 +24,17 @@ public class completioncheck : MonoBehaviour
                 Debug.Log("Niveau " + i + " validé");
             }
         }
+        
+        if (string.Join("", allLevel) == "11111111111") //check si tout les niveaux ont été validés
+        {
+            Debug.Log("Jeu terminé");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (string.Join("", allLevel) == "11111111111") //check si tout les niveaux ont été validés
-        {
-            Debug.Log("Jeu terminé");
-        }
+        
     }
 
     public static void Save() //save la complétion des niveaux

@@ -10,10 +10,14 @@ public class paintingselection : MonoBehaviour
     private bool paintingChooseActive = false;
     public CinemachineCamera playercam;
     public GameObject launch;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         completioncheck.Load(); //Vérifie la complétion des niveaux
+        
+        
     }
 
     // Update is called once per frame
@@ -26,7 +30,7 @@ public class paintingselection : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Painting"))  //Vérifie si l'objet clické est un tableau
                 {
-                    if (Vector3.Distance(transform.position, hit.point) < 3f) //Si le joueur est proche du tableau, contenu du if : accède à l'écran de séléction du niveau choisi
+                    if (Vector3.Distance(transform.position, hit.point) < 3f) //Si le joueur est proche du tableau, contenu du if : accède à l'écran de sélection du niveau choisi
                     {
                         paintingChooseActive = true;
                         paintingChoose = hit.collider.gameObject;
@@ -50,7 +54,7 @@ public class paintingselection : MonoBehaviour
         {
             launch.gameObject.SetActive(false); //désactive un texte
             paintingChooseActive = false;
-            paintingChoose.transform.GetChild(0).gameObject.SetActive(false); //desactive la camera de l'écran de séléction du-dit niveau
+            paintingChoose.transform.GetChild(0).gameObject.SetActive(false); //desactive la camera de l'écran de sélection du-dit niveau
             playercam.gameObject.SetActive(true); //active la camera du joueur
         }
 
@@ -59,10 +63,12 @@ public class paintingselection : MonoBehaviour
             //Afficher Menu
         }
     }
-
     IEnumerator Timer() //permet d'activer un gameobject après un temps donné)
     {
         yield return new WaitForSeconds(2f);
         launch.gameObject.SetActive(true); //active un texte
     }
+
+    
 }
+
