@@ -36,7 +36,7 @@ public class DetectSpot : MonoBehaviour
         onSpot = false;
     }
     
-    public static void SaveCurrentLevel() //sauvegarde quel est le niveau actuel pour le consider comme valider lorsque retour au hub
+    public static void SaveCurrentLevel() //sauvegarde quel est le niveau actuel pour le considérer comme validé lorsque retour au hub
     {
         PlayerPrefs.SetInt("Current", completioncheck.lastlevel);
     }
