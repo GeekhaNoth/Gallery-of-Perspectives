@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float speed = 100f;
-    public float zoomSpeed = 5f;
-    public float maxZoom = 20f;
-    public float minZoom = 10f;
-    public CinemachineOrbitalFollow player;
-    public GameObject center;
+    [SerializeField] private float speed = 100f;
+    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private float maxZoom = 20f;
+    [SerializeField] private float minZoom = 10f;
+    [SerializeField] private CinemachineOrbitalFollow player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,13 +22,13 @@ public class CameraController : MonoBehaviour
         //transform.LookAt(center.transform.position);
         //transform.LookAt(Vector2.zero);
         
-        float Horizontal = Input.GetAxis("Horizontal");
-        float Vertical = Input.GetAxis("Vertical");
-        player.HorizontalAxis.Value += Horizontal * speed * Time.deltaTime;
-        player.VerticalAxis.Value += Vertical * speed * Time.deltaTime;
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        player.HorizontalAxis.Value += horizontal * speed * Time.deltaTime;
+        player.VerticalAxis.Value += vertical * speed * Time.deltaTime;
         
-        float Zoom = Input.GetAxis("Mouse ScrollWheel");
-        player.Radius = Mathf.Clamp(player.Radius - Zoom * zoomSpeed, minZoom, maxZoom);
+        float zoom = Input.GetAxis("Mouse ScrollWheel");
+        player.Radius = Mathf.Clamp(player.Radius - zoom * zoomSpeed, minZoom, maxZoom);
         
         player.VerticalAxis.Value = Mathf.Clamp(player.VerticalAxis.Value, 0f, 89f);
     }
