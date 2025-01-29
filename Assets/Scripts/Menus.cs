@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,16 @@ public class Menus : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
 
+
+    private void Update()
+    {
+        if (settingsMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+                mainMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+        }
+    }
+
     private void Start()
     {
         mainMenu.SetActive(true);
@@ -17,7 +28,7 @@ public class Menus : MonoBehaviour
     void StartGame()
     {
         anim.Play("Fade");
-        StartAnim();
+        StartCoroutine(StartAnim());
     }
 
     void LoadGame()
@@ -30,17 +41,12 @@ public class Menus : MonoBehaviour
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            mainMenu.SetActive(true);
-            settingsMenu.SetActive(false);
-        }
+        
     }
 
     void Return()
     {
-        mainMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+        Start();
     }
 
     void Quit()

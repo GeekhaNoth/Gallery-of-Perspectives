@@ -10,18 +10,19 @@ public class PaintingData : MonoBehaviour
     public Vector3 _paintingPos;
     public Quaternion _paintingRot;
     public SceneAsset sceneToLoad;
-    public Texture Texture1;
-    public Texture Texture2;
+    //public Texture Texture1;
+    //public Texture Texture2;
     public int level;
 
     public int Complete = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {   
         
-        if (PlayerPrefs.HasKey("Complete" + level.ToString()))
+        if (Complete == 1)
         {
-            Complete = PlayerPrefs.GetInt("Complete" + level.ToString());
+            Debug.Log("niveau réussi");
+            
             //if (Complete == 1)
             //{
             //gameObject.GetComponent(Texture);
@@ -34,16 +35,16 @@ public class PaintingData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Complete != 1) LoadComplete();
     }
 
-    private void SaveComplete()
+    public void SaveComplete()
     {
         PlayerPrefs.SetInt("Complete" + level.ToString(), Complete);
     }
 
-    private void LoadComplete()
+    public void LoadComplete()
     {
-        Complete = PlayerPrefs.GetInt("Complete" + level.ToString());
+        Complete = PlayerPrefs.GetInt("Complete" + level.ToString(), 0);
     }
 }

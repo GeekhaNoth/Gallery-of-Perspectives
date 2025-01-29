@@ -181,6 +181,9 @@ MonoBehaviour:
   paintingChoose: {fileID: 0}
   playerCamera: {fileID: 2062524685}
   text: {fileID: 356011726}
+  player: {fileID: 139413084}
+  _levelManager: {fileID: 111963097}
+  test: 15
 --- !u!114 &111963097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,13 +196,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6addc6928de0f5f49899e1fd37f8f87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _paintingData: {fileID: 0}
+  _isIntroDone: 0
   _paintingSelection: {fileID: 111963096}
   _player: {fileID: 139413084}
-  _manager: {fileID: 0}
+  _manager: {fileID: 111963092}
   _allLevel:
-  - {fileID: 0}
+  - {fileID: 1112550716}
+  - {fileID: 1639042844}
   _levelCompletion: 
+  _currentLevel: 0
+  lastlevel: {fileID: 0}
 --- !u!1 &139413084
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1357bd2a7330443a8132234cd03ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 139413084}
   camera: {fileID: 2062524685}
   speed: 5
   camspeed: 50
@@ -992,7 +997,7 @@ GameObject:
   - component: {fileID: 1112550717}
   - component: {fileID: 1112550721}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bouche
   m_TagString: Painting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1103,9 +1108,9 @@ MonoBehaviour:
   _camera: {fileID: 365516168}
   _paintingPos: {x: 0, y: 0, z: 0}
   _paintingRot: {x: 0, y: 0, z: 0, w: 0}
-  sceneToLoad: {fileID: 0}
-  Texture1: {fileID: 0}
-  Texture2: {fileID: 0}
+  sceneToLoad: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  level: 0
+  Complete: 0
 --- !u!1 &1146599963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,9 +1515,9 @@ MonoBehaviour:
   _camera: {fileID: 1959966096}
   _paintingPos: {x: 0, y: 0, z: 0}
   _paintingRot: {x: 0, y: 0, z: 0, w: 0}
-  sceneToLoad: {fileID: 0}
-  Texture1: {fileID: 0}
-  Texture2: {fileID: 0}
+  sceneToLoad: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  level: 1
+  Complete: 0
 --- !u!1 &1959966094
 GameObject:
   m_ObjectHideFlags: 0

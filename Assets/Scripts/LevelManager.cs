@@ -19,34 +19,32 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private GameObject[] _allLevel;
     public int[] _levelCompletion;
-    public int _currentLevel = 0;
+    public int _currentLevel = -1;
 
     public GameObject lastlevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
-        if (PlayerPrefs.HasKey("IntroDone")) LoadIntro();
+        LoadIntro();
         
         if (_isIntroDone == 1) //&& _isRestart == 1)
         { 
             LoadData();
             LoadCurrentLevel();
-            lastlevel = _allLevel[_currentLevel];
+            if (_currentLevel != -1) lastlevel = _allLevel[_currentLevel];
             PaintingData _painting = lastlevel.GetComponent<PaintingData>();
             _painting.Complete = 1;
+            _painting.SaveComplete();
             _player.transform.position = Position;
             _player.transform.rotation = Rotation;
         }
         else
         {
             //Intro
-            Debug.Log("a");
             _isIntroDone = 1;
             SaveIntro();
         }
-
-        _allLevel = GameObject.FindGameObjectsWithTag("Painting");
+        
         foreach (GameObject paint in _allLevel)
         {
             for (int i = 0; i < _allLevel.Length; i++)
@@ -70,11 +68,12 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
+        GameObject choose = _paintingSelection.paintingChoose;
+        PaintingData _paintingData = choose.GetComponent<PaintingData>();
         _currentLevel = _paintingData.level;
         SaveCurrentLevel();
-        PaintingData _painting = _paintingSelection.paintingChoose.GetComponent<PaintingData>();
-        Position = _painting._paintingPos;
-        Rotation = _painting._paintingRot;
+        Position = _paintingData._paintingPos;
+        Rotation = _paintingData._paintingRot;
         SaveData();
         //SaveRestart();
         SceneManager.LoadScene(_paintingData.sceneToLoad.name);
@@ -96,14 +95,14 @@ public class LevelManager : MonoBehaviour
     
     private void LoadData()
     {
-        float posX = PlayerPrefs.GetFloat("PosX");
-        float posY = PlayerPrefs.GetFloat("PosY");
-        float posZ = PlayerPrefs.GetFloat("PosZ");
+        float posX = PlayerPrefs.GetFloat("PosX", 0);
+        float posY = PlayerPrefs.GetFloat("PosY", 0);
+        float posZ = PlayerPrefs.GetFloat("PosZ", -5);
         Position = new Vector3(posX, posY, posZ);
-        float rotX = PlayerPrefs.GetFloat("RotX");
-        float rotY = PlayerPrefs.GetFloat("RotY");
-        float rotZ = PlayerPrefs.GetFloat("RotZ");
-        float rotW = PlayerPrefs.GetFloat("RotW");
+        float rotX = PlayerPrefs.GetFloat("RotX", 0);
+        float rotY = PlayerPrefs.GetFloat("RotY", 0);
+        float rotZ = PlayerPrefs.GetFloat("RotZ", 0);
+        float rotW = PlayerPrefs.GetFloat("RotW", 0);
         Rotation = new Quaternion(rotX, rotY, rotZ, rotW);
         //_isRestart = PlayerPrefs.GetInt("Restart");
     }
@@ -115,7 +114,7 @@ public class LevelManager : MonoBehaviour
 
     private void LoadIntro()
     {
-        _isIntroDone = PlayerPrefs.GetInt("IntroDone");
+        _isIntroDone = PlayerPrefs.GetInt("IntroDone", 0);
     }
 
     //public void SaveRestart()
@@ -152,6 +151,6 @@ public class LevelManager : MonoBehaviour
 
     private void LoadCurrentLevel()
     {
-        _currentLevel = PlayerPrefs.GetInt("CurrentLevel", _currentLevel);
+        _currentLevel = PlayerPrefs.GetInt("CurrentLevel", -1);
     }
 }

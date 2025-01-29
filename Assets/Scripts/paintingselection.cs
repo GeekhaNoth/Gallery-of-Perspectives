@@ -11,8 +11,8 @@ public class paintingselection : MonoBehaviour
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private GameObject text;
     [SerializeField] private GameObject player;
-    private LevelManager _levelManager;
-    
+    public LevelManager _levelManager;
+    public int test = 15;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,8 +40,8 @@ public class paintingselection : MonoBehaviour
         if (_paintingChooseActive && Input.GetKeyDown("e")) //Permet de lancer le niveau si appuie sur e
         {
             
-            SceneManager.LoadScene(1);
-           // _levelManager.StartLevel(); //lance le niveau
+            //SceneManager.LoadScene(1);
+           _levelManager.StartLevel(); //lance le niveau
 
         }
         

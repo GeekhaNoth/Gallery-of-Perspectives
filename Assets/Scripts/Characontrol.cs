@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Characontrol : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    
     [SerializeField] public CinemachineCamera camera;
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float camspeed = 50.0f;
@@ -26,10 +26,10 @@ public class Characontrol : MonoBehaviour
         //camera.transform.rotation *= Quaternion.Euler(camvertical, 0, 0);
         
         
-        player.transform.position += player.transform.right * horizontal + player.transform.forward * vertical;
+        transform.position += transform.right * horizontal + transform.forward * vertical;
         
         
-        player.transform.Rotate(0, camhorizontal, 0);
+        transform.Rotate(0, camhorizontal, 0);
         
         _cameraRotationX -= camvertical;
         _cameraRotationX = Mathf.Clamp(_cameraRotationX, -90f, 90f);
