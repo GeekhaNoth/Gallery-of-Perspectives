@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9c394b719acc241947f572033e2cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allLevelEditor: 0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &111963096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +202,7 @@ MonoBehaviour:
   _allLevel:
   - {fileID: 1112550716}
   - {fileID: 1639042844}
-  _levelCompletion: 
+  _levelCompletion: 0
   _currentLevel: 0
   lastlevel: {fileID: 0}
 --- !u!1 &139413084
@@ -257,7 +256,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139413084}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -424,7 +423,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172368589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
