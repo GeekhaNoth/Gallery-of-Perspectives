@@ -18,10 +18,9 @@ public class PaintingData : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
-        
+        LoadComplete();
         if (Complete == 1)
         {
-            Debug.Log("niveau réussi");
             
             //if (Complete == 1)
             //{
@@ -35,7 +34,6 @@ public class PaintingData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Complete != 1) LoadComplete();
     }
 
     public void SaveComplete()

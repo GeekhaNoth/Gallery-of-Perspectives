@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public int _isIntroDone = 0;
+    private int _isLastLevelDone = 0;
     //private int _isRestart = 0;
     private PaintingData _painting;
     private Vector3 Position;
@@ -18,23 +20,28 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _manager;
 
     [SerializeField] private GameObject[] _allLevel;
-    public int[] _levelCompletion;
+    public int _levelCompletion;
     public int _currentLevel = -1;
 
     public GameObject lastlevel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _levelCompletion = 0;
         LoadIntro();
         
         if (_isIntroDone == 1) //&& _isRestart == 1)
         { 
             LoadData();
             LoadCurrentLevel();
-            if (_currentLevel != -1) lastlevel = _allLevel[_currentLevel];
-            PaintingData _painting = lastlevel.GetComponent<PaintingData>();
-            _painting.Complete = 1;
-            _painting.SaveComplete();
+            if (_isLastLevelDone == 1)
+            {
+                if (_currentLevel != -1) lastlevel = _allLevel[_currentLevel];
+                PaintingData _painting = lastlevel.GetComponent<PaintingData>();
+                _painting.Complete = 1;
+                _painting.SaveComplete();
+            }
+
             _player.transform.position = Position;
             _player.transform.rotation = Rotation;
         }
@@ -47,13 +54,16 @@ public class LevelManager : MonoBehaviour
         
         foreach (GameObject paint in _allLevel)
         {
-            for (int i = 0; i < _allLevel.Length; i++)
+            PaintingData _painting = paint.GetComponent<PaintingData>();
+            _painting.LoadComplete();
+            Debug.Log(_painting.Complete);
+            if (_painting.Complete == 1)
             {
-                //check la texture de chaque game object
-                //if (gameObject.component = texture 2)
-                //_levelCompletion[i] = 1;
+                _levelCompletion++;
             }
+
         }
+        
         //if (Convert.ToInt32(_levelCompletion) == 1111111)
         //{
             //Fin du jeu
@@ -127,22 +137,19 @@ public class LevelManager : MonoBehaviour
     //{
      //   _isRestart = PlayerPrefs.GetInt("Restart");
     //}
-    private void SaveCompletion()
+    /*private void SaveCompletion()
     {
-        PlayerPrefs.SetInt("Completion", Convert.ToInt32(_levelCompletion));
+        PlayerPrefs.SetInt("Completion", _levelCompletion.Sum());
     }
 
     private void LoadCompletion()
     {
-        int value = PlayerPrefs.GetInt("Completion");
-        string valutstring = value.ToString();
-        int[] array = new int[valutstring.Length];
-        for (int i = 0; i < array.Length; i++)
+        int value = PlayerPrefs.GetInt("Completion", 0);
+        for (int i = 0; i < value; i++)
         {
-            array[i] = int.Parse(valutstring[i].ToString());
+            _levelCompletion[i] = 1;
         }
-        _levelCompletion = array;
-    }
+    }*/
 
     private void SaveCurrentLevel()
     {
@@ -152,5 +159,6 @@ public class LevelManager : MonoBehaviour
     private void LoadCurrentLevel()
     {
         _currentLevel = PlayerPrefs.GetInt("CurrentLevel", -1);
+        _isLastLevelDone = PlayerPrefs.GetInt("OnSpot", 0);
     }
 }

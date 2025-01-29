@@ -18,9 +18,11 @@ public class DetectSpot : MonoBehaviour
         {
             if (_onSpot) //vérifie si le joueur est au bon endroit pour valider le niveau
             {
-                SceneManager.LoadScene(0);
+                PlayerPrefs.SetInt("OnSpot", 1);
+                
             }
-            else Debug.Log("Faux");
+            else PlayerPrefs.SetInt("OnSpot", 0);
+            SceneManager.LoadScene(0);
         }
     }
 
