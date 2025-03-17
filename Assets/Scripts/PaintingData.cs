@@ -1,6 +1,8 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class PaintingData : MonoBehaviour
@@ -13,11 +15,14 @@ public class PaintingData : MonoBehaviour
     //public Texture Texture1;
     //public Texture Texture2;
     public int level;
+    public UniversalRendererData postProcess;
+    public Material postProcessingShader;
 
     public int Complete = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {
+
         LoadComplete();
         if (Complete == 1)
         {
@@ -34,6 +39,21 @@ public class PaintingData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //FullScreenPassRendererFeature feature = postProcess.GetComponent<FullScreenPassRendererFeature>();
+            //feature.passMaterial = postProcessingShader;
+            //feature.SetActive(true);
+            foreach (var feature in postProcess.rendererFeatures)
+            {
+                if (feature is FullScreenPassRendererFeature fullScreenFeature)
+                {
+                    fullScreenFeature.passMaterial = postProcessingShader;
+                    feature.SetActive(true);
+                    Debug.Log("Post Process Material Updated!");
+                }
+            }
+        }
     }
 
     public void SaveComplete()

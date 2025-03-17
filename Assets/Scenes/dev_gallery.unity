@@ -1109,6 +1109,8 @@ MonoBehaviour:
   _paintingRot: {x: 0, y: 0, z: 0, w: 0}
   sceneToLoad: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
   level: 0
+  postProcess: {fileID: 0}
+  postProcessingShader: {fileID: 0}
   Complete: 0
 --- !u!1 &1146599963
 GameObject:
@@ -1516,6 +1518,8 @@ MonoBehaviour:
   _paintingRot: {x: 0, y: 0, z: 0, w: 0}
   sceneToLoad: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
   level: 1
+  postProcess: {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  postProcessingShader: {fileID: 2100000, guid: a769696e5a11e8f4d94799a1c7133a62, type: 2}
   Complete: 0
 --- !u!1 &1959966094
 GameObject:
