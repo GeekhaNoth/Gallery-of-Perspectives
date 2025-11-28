@@ -1,8 +1,5 @@
 using Unity.Cinemachine;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class PaintingData : MonoBehaviour
@@ -11,12 +8,12 @@ public class PaintingData : MonoBehaviour
     [SerializeField] private CinemachineCamera _camera;
     public Vector3 _paintingPos;
     public Quaternion _paintingRot;
-    public SceneAsset sceneToLoad;
+    public Scene sceneToLoad;
     //public Texture Texture1;
     //public Texture Texture2;
     public int level;
-    public UniversalRendererData postProcess;
-    public Material postProcessingShader;
+    //public UniversalRendererData postProcess;
+    //public Material postProcessingShader;
 
     public int Complete = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +41,7 @@ public class PaintingData : MonoBehaviour
             //FullScreenPassRendererFeature feature = postProcess.GetComponent<FullScreenPassRendererFeature>();
             //feature.passMaterial = postProcessingShader;
             //feature.SetActive(true);
-            foreach (var feature in postProcess.rendererFeatures)
+            /*foreach (var feature in postProcess.rendererFeatures)
             {
                 if (feature is FullScreenPassRendererFeature fullScreenFeature)
                 {
@@ -52,7 +49,7 @@ public class PaintingData : MonoBehaviour
                     feature.SetActive(true);
                     Debug.Log("Post Process Material Updated!");
                 }
-            }
+            }*/
         }
     }
 
