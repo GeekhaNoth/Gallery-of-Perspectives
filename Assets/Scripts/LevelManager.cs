@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
     private int _isLastLevelDone = 0;
     //private int _isRestart = 0;
     private PaintingData _painting;
-    private Vector3 Position;
-    private Quaternion Rotation;
+    private Vector3 Position = new Vector3(17, 5.5f, 0);
+    private Quaternion Rotation = new Quaternion(0, -90, 0, 0);
     private PaintingData _paintingData;
     [SerializeField] private paintingselection _paintingSelection;
     [SerializeField] private GameObject _player;
@@ -105,12 +105,12 @@ public class LevelManager : MonoBehaviour
     
     private void LoadData()
     {
-        float posX = PlayerPrefs.GetFloat("PosX", 0);
-        float posY = PlayerPrefs.GetFloat("PosY", 0);
+        float posX = PlayerPrefs.GetFloat("PosX", 17);
+        float posY = PlayerPrefs.GetFloat("PosY", 6);
         float posZ = PlayerPrefs.GetFloat("PosZ", -5);
         Position = new Vector3(posX, posY, posZ);
         float rotX = PlayerPrefs.GetFloat("RotX", 0);
-        float rotY = PlayerPrefs.GetFloat("RotY", 0);
+        float rotY = PlayerPrefs.GetFloat("RotY", -90);
         float rotZ = PlayerPrefs.GetFloat("RotZ", 0);
         float rotW = PlayerPrefs.GetFloat("RotW", 0);
         Rotation = new Quaternion(rotX, rotY, rotZ, rotW);

@@ -22,7 +22,7 @@ public class DetectSpot : MonoBehaviour
                 
             }
             else PlayerPrefs.SetInt("OnSpot", 0);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
 

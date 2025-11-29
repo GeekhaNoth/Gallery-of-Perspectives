@@ -12,7 +12,6 @@ public class paintingselection : MonoBehaviour
     [SerializeField] private GameObject text;
     [SerializeField] private GameObject player;
     public LevelManager _levelManager;
-    public int test = 15;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +26,7 @@ public class paintingselection : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.CompareTag("Painting") && Vector3.Distance(player.transform.position, hit.point) < 3f)
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.CompareTag("Painting") && Vector3.Distance(player.transform.position, hit.point) < 5f)
             {
                 _paintingChooseActive = true;
                 paintingChoose = hit.collider.gameObject;
